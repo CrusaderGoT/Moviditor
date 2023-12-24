@@ -1,0 +1,36 @@
+{% extends 'moviditor/base.html' %}
+{% block content %}
+
+<center><h2 class="text-dark">Your Audios</h2>
+<p>
+    <a type="button" class="btn btn-warning text-nowrap" href="{% url 'moviditor:add-audio' %}">add audio</a>
+</p>
+</center>
+{% if messages %}
+    {% for msg in messages %}
+        <h6 class="text-success">{{ msg }}</h6>
+    {% endfor %}
+{% endif %}
+<br><hr>
+{% for audio in audios %}
+  <ul>
+    <audio controls src="{{ audio.audio.url }}">
+      <source src="{{ audio.audio.url }}" type="audio/mpeg"> audio not supported by browser
+    </audio>
+    <li>{{ audio.name }}</li>
+    <ul>
+      <li>size: {{ audio.size }}mb</li>
+      <li>uploaded: {{ audio.date_added }}</li>
+    </ul> 
+    <div role="button" class="my-3">
+      <a type="button" class="btn btn-outline-info btn-sm" href="{% url 'moviditor:convert-mp4' audio.id %}">convert to mp4</a>
+    </div>
+    <div role="button" class="my-3">
+      <a type="button" href="{% url 'moviditor:confirm-del-aud' audio.id audio.name %}" class="btn btn-danger btn-sm">delete</a>
+    </div>
+  </ul>
+  <hr><br>
+{% empty %}
+  <h3 class="text h3">no audio file has been uploaded yet...</h3>
+{% endfor %}
+{% endblock content %}

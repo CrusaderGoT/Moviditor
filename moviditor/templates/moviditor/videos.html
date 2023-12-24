@@ -1,0 +1,36 @@
+{% extends 'moviditor/base.html' %}
+{% block content %}
+<center>
+    <h2 class="text-dark">Your Videos</h2>
+    <a href="{% url 'moviditor:add-video' %}" type="button" class="btn btn-warning text-nowrap">add video</a>
+</center>
+<br>
+{% if messages %}
+    {% for msg in messages %}
+        <h6 class="text-success">{{ msg }}</h6>
+    {% endfor %}
+{% endif %}
+<hr>
+{% for video in videos %}
+    <ul>
+        <div class="container-fluid"><video src="{{ video.video.url }}" controls height="400">not supported by browser</video></div>
+        <li>{{ video.name }}</li>
+        <ul>
+            <li>size: {{ video.size }}mb</li>
+            <li>uploaded: {{ video.date_added }}</li>
+        </ul> 
+        <div role="group" class="btn-group">
+            <a href="#" type="button" class="btn btn-outline-danger btn-sm">cut</a>
+            <a type="button" class="btn btn-outline-info btn-sm" href="{% url 'moviditor:cut-in-parts' video.id %}">divide into parts</a>
+            <a href="{% url 'moviditor:convert-to-mp3' video.id video.name %}" type="button" class="btn btn-outline-warning btn-sm">convert to mp3</a>
+            <a href="{% url 'moviditor:timed-cut' video.id video.name %}" type="button" class="btn btn-outline-success btn-sm">timed split</a>
+        </div>
+        <div role="button" class="my-3">
+            <a type="button" href="{% url 'moviditor:confirm-del-vid' video.id video.name %}" class="btn btn-danger btn-sm">delete</a>
+        </div>
+    </ul>
+    <hr><br>
+{% empty %}
+<h3 class="text h3">no video has been uploaded yet...</h3>
+{% endfor %}
+{% endblock content %}

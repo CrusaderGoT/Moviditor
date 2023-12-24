@@ -1,0 +1,17 @@
+{% extends 'moviditor/base.html' %}
+{% block content %}
+
+<div class="container form-control border border-end-6 border-dark-subtle mb-6 pb-6 rounded-4">
+    <h1 class="lead text-danger">
+        "{{video.name}}" will be divided into
+    </h1>
+    <form class="" action="{% url 'moviditor:cut-in-parts' video.id %}" method="post">
+        {% csrf_token %}
+        <label for="divideNumber" class="form-label text-black">select the number you want to divide the video into:</label>
+        <input type="number" min="2" class="form-control text-info form-control-sm border-primary-subtle" aria-label=".form-control-sm" name="number" id="divideNumber" placeholder="number has to be greater than 2">
+        <div class="col-auto my-2">
+            <button type="submit" class="btn btn-primary btn-sm mb-3">divide</button>
+        </div>   
+    </form>
+</div>
+{% endblock content %}

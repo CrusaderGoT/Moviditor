@@ -1,0 +1,34 @@
+{% extends 'moviditor/base.html' %}
+{% block content %}
+<div class="container">
+    {% if form.errors %}
+      <h3 class="text text-warning h3">
+        Your username and password didn't match. Please try again.
+      </h3>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <h3 class="text text-black">
+        Your account doesn't have access to this page.
+      </h3>
+    {% else %}
+      <h3 class="text text-info">
+        Please login to see this page.
+      </h3>
+    {% endif %}
+  {% endif %}
+</div>
+
+
+<div class="container form-control" id="loginID">
+  <label for="loginID" class="form-label pb-3 text text-black h3 lead">Enter your correct credentials to log in.</label>
+    <form action="{% url 'users:login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-control">{{form.as_p}}</div>
+        <button type="submit" class="btn my-3 btn-primary btn-sm">login</button>
+        <input type="hidden" name="next" value="{% url 'moviditor:home' %}">
+    </form>
+    <a href="{% url 'users:password_reset' %}">forgotten password?</a>
+</div>
+{% endblock content %}

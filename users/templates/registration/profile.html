@@ -1,0 +1,22 @@
+{% extends 'moviditor/base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+    {% if profile %}
+        <div class="container">
+            <div><img src="{{ profile.picture.url }}" alt="#profile pic" height="300"></div>
+            <div>{{profile.user|title}}</div>
+            <div>{{ profile.about }}</div>
+            <div>{{profile.date_created}}</div>
+        </div>
+    {% else %}
+    <h3 class="text text-primary">No profile  yet...</h3>
+    <div class="position auto mx"><a href="{% url 'users:create-profile' %}" class="btn btn-danger btn-lg"></a></div>
+    {% endif %}      
+{% else %}
+ <div class="text lead container position auto-mx">
+    <a href="{% url 'users:sign-up' %}" class="btn btn-lg btn-primary">create an account</a>
+    <a href="{% url 'users:login' %}" class="btn btn-lg btn-primary">or login</a>
+ </div>
+{% endif %}
+ 
+{% endblock content %}

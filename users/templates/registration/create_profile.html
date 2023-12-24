@@ -1,0 +1,10 @@
+{% extends 'moviditor/base.html' %}
+{% block content %}
+<form action="{% url 'users:create-profile' %}" class="form-control" method="post">
+    {% csrf_token %}
+    <div class="container mb-3 form-control">
+        {{form.as_p}}
+    <input type="submit" value="create">
+    </div>
+</form>
+{% endblock content %}

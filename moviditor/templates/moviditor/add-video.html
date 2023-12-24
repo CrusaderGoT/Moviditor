@@ -1,0 +1,14 @@
+{% extends 'moviditor/base.html' %}
+{% block content %}
+<center><h3 class="text secondary">Upload Video</h3></center>
+{% if messages %}
+    {% for msg in messages %}
+        <h6 >{{ msg }}</h6>
+    {% endfor %}
+{% endif %}
+<form action="{% url 'moviditor:add-video' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="upload">
+</form>
+{% endblock content %}

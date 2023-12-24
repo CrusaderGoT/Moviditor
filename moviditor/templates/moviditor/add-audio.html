@@ -1,0 +1,16 @@
+{% extends 'moviditor/base.html' %}
+{% block content %}
+{% if messages %}
+    {% for msg in messages %}
+        <h6 class="text-warning">{{ msg }}</h6>
+    {% endfor %}
+{% endif %}
+<br>
+<div class="mb-3">
+    <form id="audioFile" action="{% url 'moviditor:add-audio' %}" class="form-control" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-sm">add</button>
+    </form>
+</div>
+{% endblock content %}

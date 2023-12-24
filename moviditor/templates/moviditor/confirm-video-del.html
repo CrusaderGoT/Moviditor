@@ -1,0 +1,11 @@
+{% extends 'moviditor/base.html' %}
+{% block content %}
+<div class="container">
+    <h3 class="lead text text-info">
+        Are you sure you want to delete "{{video.name}}"?
+    </h3>
+    <a href="{% url 'moviditor:del-video' video.id video.name %}" class="btn btn-small btn-danger ">yes</a>
+    &NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;
+    <a href="{% url 'moviditor:video' %}" class="btn btn-small btn-primary ">No</a>
+</div>
+{% endblock content %}

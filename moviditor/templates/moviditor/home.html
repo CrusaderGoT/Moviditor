@@ -1,0 +1,19 @@
+{% extends 'moviditor/base.html' %}
+{% block content %}
+<div class="container position-relative">
+    {% if user.is_authenticated %}
+    <div class="text text-info h6 position-absolute top-0 start-0">Hello, {{ user.username|title }}!</div>
+    <div class="position-absolute top-0 end-0"><a href="{% url 'users:logout' %}" class="text text-danger">Log out</a></div>
+    {% else %}
+    <div class="position-absolute top-0 end-0"><a href="{% url 'users:login' %}" class="text-primary">Log in</a></div>
+    <div class="position-absolute top-0 start-50 "><a href="{% url 'users:sign-up' %}" class="text text-info">Sign up</a></div>
+    {% endif %}
+</div>
+<div class="container my-5">
+    <center><h4 class="text text-success">Welcome to Moviditor</h4></center>
+</div>
+
+<br><br><br><br><br>
+<span><a class="container round-pill bg-primary" href="{% url 'moviditor:audio' %}">Audio</a></span>
+<span><a href="{% url 'moviditor:video' %}" class="container bg-dark round-pill">Video</a></span>
+{% endblock content %}

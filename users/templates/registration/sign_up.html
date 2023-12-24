@@ -1,0 +1,37 @@
+{% extends 'moviditor/base.html' %}
+{% block content %}
+<div class="container form-control">
+    {% if form.errors %}
+      <div class="text text-warning h6">
+        An error occured try again.
+        {{form.errors}}
+      </div>
+    {% endif %}
+    <label for="SignUp" class="form-label text-black lead h3">Follow the instructions, to create an account.</label>
+    <form action="{% url 'users:sign-up' %}" method="post" id="SignUp" aria-autocomplete="none" autocomplete="off">
+      {% csrf_token %}
+      <label for="emailID" class="form-label">Your Email address:</label>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="addon1">@</span>
+        <input required type="email" name="email" id="emailID" placeholder="Email Address" class="form-control" aria-label="Email" aria-describedby="addon1">
+      </div>
+
+      <label for="usernameID" class="form-label">Enter a username:</label>
+      <div class="mb-3">
+        <input required type="text" name="username" class="form-control" id="usernameID" aria-autocomplete="none" autocomplete="off" placeholder="150 characters max" maxlength="50">
+      </div>
+
+      <div class="mb-3">
+        <label for="passwordID1" class="form-label">Password:</label>
+        <input required type="password" name="password1" autocomplete="off" aria-autocomplete="none" class="form-control" placeholder="choose a unique password" id="passwordID1">
+      </div>
+
+      <div class="mb-3">
+        <label for="passwordID2" class="form-label">Re-enter password:</label>
+        <input required type="password" name="password2" autocomplete="new-password" class="form-control" placeholder="confirm password" id="passwordID2">
+      </div> 
+
+      <input type="submit" class="btn btn-success" value="submit">
+    </form>
+</div>
+{% endblock content %}

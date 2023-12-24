@@ -1,0 +1,16 @@
+{% extends 'moviditor/base.html' %}
+{% block content %}
+<div class="container form-control border border-end-6 border-dark-subtle mb-6 pb-6 rounded-4">
+    <h1 class="lead text text-black">
+        "{{video.name}}" will be cut into the the following time each.
+    </h1>
+    <form action="{% url 'moviditor:timed-cut' video.id video.name %}" method="post">
+        {% csrf_token %}
+        <label for="timeInput" class="form-label text-primary">specify the time(seconds) you want each video to be:</label>
+        <input type="number" min="2" class="form-control text-info form-control-sm border-primary-subtle" aria-label=".form-control-sm" name="time" id="timeInput" placeholder="time has to be greater than 1 sec">
+        <div class="col-auto my-2">
+            <button type="submit" class="btn btn-primary btn-sm mb-3">split</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
