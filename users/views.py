@@ -6,8 +6,12 @@ from django.contrib.auth.models import User
 from . models import Profile
 from .forms import ProfileForm
 from django.contrib import messages
+import os
 # Create your views here.
-t_path = 'C:\\Users\\DELL\\Documents\\Python_Files\\Moviditor\\users\\templates\\registration'
+
+# template folder path
+t_path = os.path.abspath('users\\templates\\registration')
+'''the template path'''
 
 def sign_up(request):
     if request.method != 'POST':
