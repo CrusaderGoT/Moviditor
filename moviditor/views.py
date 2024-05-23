@@ -282,7 +282,7 @@ def del_video(request, video_id, video_name):
         messages.success(request, f'{video.name} was deleted successful.')
         return redirect('moviditor:video', permanent=True)
     else:
-        raise Http404
+        raise Http404()
 
 @login_required(redirect_field_name="next") 
 def confirm_audio_del(request, audio_id, audio_name):
@@ -302,7 +302,7 @@ def del_audio(request, audio_id, audio_name):
         messages.success(request, f'{audio.name} was deleted successful.')
         return redirect('moviditor:audio', permanent=True)
     else:
-        raise Http404
+        raise Http404()
     
 def search(request):
     #fetch videos or/audios belonging to the user and contains the search phrase

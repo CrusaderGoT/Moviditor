@@ -4,3 +4,4 @@ __pycache__
 *.env
 .vscode
 Moviditor.workspace.code-workspace
+media/**/*.*
